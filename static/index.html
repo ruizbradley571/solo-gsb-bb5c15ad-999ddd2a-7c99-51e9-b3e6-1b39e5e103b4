@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>乐谱反复段展开工具</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>乐谱反复段展开工具</h1>
+  <p class="hint">
+    每行输入一个小节编号；编号前加 <code>|:</code> 表示反复起点，
+    编号后加 <code>:|xN</code>（N 为 2～9）表示反复终点；反复段可嵌套。
+    空行与 <code>#</code> 开头的行会被忽略。展开超过 5000 小节将停止并指出源行。
+  </p>
+
+  <div class="editor">
+    <textarea id="input" rows="14" spellcheck="false"
+      placeholder="例如：&#10;1&#10;|: 2&#10;|: 3&#10;4 :|x2&#10;5 :|x3&#10;6"></textarea>
+    <div class="actions">
+      <button id="expandBtn" class="primary">展开（Ctrl+Enter）</button>
+      <button id="exampleBtn" type="button">填入示例</button>
+      <button id="clearBtn" type="button">清空</button>
+      <button id="csvBtn" type="button" disabled>下载 CSV</button>
+    </div>
+  </div>
+
+  <div id="messages" role="alert"></div>
+  <div id="summary"></div>
+
+  <table id="result" hidden>
+    <thead>
+      <tr><th>演奏序号</th><th>原小节编号</th><th>源行号</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
